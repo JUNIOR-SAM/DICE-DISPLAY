@@ -81,19 +81,75 @@
   </div>
 </div>
 
-    <button class="btn btn-success col-lg-5 col-8 fw-bold container-fluid" onclick="rollDice() , secondDice()">ROLL YOUR DICE</button>
+    <button class="btn btn-success col-lg-5 col-8 fw-bold container-fluid" onclick="rollDice()">ROLL YOUR DICE</button>
     <div id="result" class="mt-5 fw-bold text-black"></div>
     <div id="secondResult" class="mt-5 fw-bold text-black"></div>
 </body>
 
 
 <script>
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            rollDice();
+        }
+    });
+
+    const music = new Audio('audio/dice.mp3');
+
+    const rollDice = () => {
+         dice.style.display = "block";
+         result.style.display = "none";
+         secondResult.style.display = "none";
+    
+        music.currentTime = 0;
+        music.play();
+        music.onended = function () {
+
+            // Generate random numbers for two dice
+            const Num1 = Math.floor(Math.random() * 6);
+            const Num2 = Math.floor(Math.random() * 6);
+
+            // Show first result
+            result.innerHTML = `You first roll is ${Num1}`;
+            result.style.display = "flex";
+            result.style.justifyContent = "center";
+            result.style.alignItems = "center";
+            result.style.margin = "auto";
+            result.style.backgroundColor = "yellow";
+            result.style.width = "200px";
+            result.style.height = "50px";
+            result.style.borderRadius = "10px";
+
+            // Show second result
+            secondResult.innerHTML = `Your second roll is ${Num2}`;
+            secondResult.style.display = "flex";
+            secondResult.style.justifyContent = "center";
+            secondResult.style.alignItems = "center";
+            secondResult.style.margin = "20px auto 0 auto";
+            secondResult.style.backgroundColor = "yellow";
+            secondResult.style.width = "200px";
+            secondResult.style.height = "50px";
+            secondResult.style.borderRadius = "10px";
+
+            // Optionally show the dice visual
+            dice.style.display = "none";
+
+            setTimeout(() => {
+                result.style.display = "none";
+                secondResult.style.display = "none";
+            }, 7000);
+        }
+    }
+</script>
+
+<!-- <script>
         document.addEventListener('keydown',(e) => {
         if(e.key === 'Enter') {
             rollDice();
         }
     })
 
+    const music = new Audio ('audio/dice.mp3')
 
     const rollDice = () => {
         let diceNumber;
@@ -115,11 +171,12 @@
             dice.style.display = "none";
             result.style.display = "none";
         }, 7000);
-  
-    }
+      }
+    
 }
 
     const secondDice = () => {
+      
         let diceNumber;
     const Num = Math.round (Math.random()*6);
     if(Num >= 1){
@@ -143,5 +200,5 @@
     }
 }
 
-</script>
+</script> -->
 </html>
