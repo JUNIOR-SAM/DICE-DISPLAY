@@ -106,8 +106,8 @@
         music.onended = function () {
 
             // Generate random numbers for two dice
-            const Num1 = Math.floor(Math.random() * 6);
-            const Num2 = Math.floor(Math.random() * 6);
+            const Num1 = Math.floor(Math.random() * 6 + 1);
+            const Num2 = Math.floor(Math.random() * 6 + 1);
 
             result.innerHTML = `You first roll is ${Num1}`;
             result.style.display = "flex";
